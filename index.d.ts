@@ -1,4 +1,4 @@
-/**
+/*
 * @license Apache-2.0
 *
 * Copyright (c) 2026 The Stdlib Authors.
@@ -16,39 +16,37 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
+
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@esm/index.d.ts"/>
+
+import { typedndarray } from '@stdlib/types/ndarray';
 
 /**
-* Compute the variance of a one-dimensional ndarray using a one-pass algorithm proposed by Youngs and Cramer.
+* Computes the variance of a one-dimensional ndarray using a one-pass algorithm proposed by Youngs and Cramer.
 *
-* @module @stdlib/stats-base-ndarray-varianceyc
+* @param arrays - array-like object containing a one-dimensional input ndarray and a zero-dimensional ndarray specifying a degrees of freedom adjustment
+* @returns variance
 *
 * @example
+* var ndarray = require( '@stdlib/ndarray-base-ctor' );
 * var scalar2ndarray = require( '@stdlib/ndarray-from-scalar' );
-* var ndarray = require( '@stdlib/ndarray-ctor' );
-* var varianceyc = require( '@stdlib/stats-base-ndarray-varianceyc' );
+* var Float64Array = require( '@stdlib/array-float64' );
 *
 * var opts = {
-*     'dtype': 'generic'
+*     'dtype': 'float64'
 * };
 *
-* // Define a one-dimensional input ndarray:
-* var xbuf = [ 1.0, -2.0, 2.0 ];
+* var xbuf = new Float64Array( [ 1.0, -2.0, 2.0 ] );
 * var x = new ndarray( opts.dtype, xbuf, [ 3 ], [ 1 ], 0, 'row-major' );
-*
-* // Specify the degrees of freedom adjustment:
 * var correction = scalar2ndarray( 1.0, opts );
 *
-* // Compute the variance:
 * var v = varianceyc( [ x, correction ] );
 * // returns ~4.3333
 */
-
-// MODULES //
-
-var main = require( './main.js' );
+declare function varianceyc<T extends typedndarray<number> = typedndarray<number>>( arrays: [ T, T ] ): number;
 
 
 // EXPORTS //
 
-module.exports = main;
+export = varianceyc;
